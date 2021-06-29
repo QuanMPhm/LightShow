@@ -1,4 +1,4 @@
-// Copyright 2021 Quan PHam quanmp@bu.edu
+// Copyright 2021 Quan Pham quanmp@bu.edu
 
 #include <iostream>
 #include <fstream>
@@ -266,7 +266,6 @@ class SongPlayer {
                 float sumAmp = 0;
                 for (int i = 0; i < spf; i++) {
                     tempIn[i] = (*channel).channel1[startHead + i];
-                    if (i >= spf - 100) cout << i << ":" <<  tempIn[i] << " ";
                 }
 
                 tempP = fftw_plan_dft_r2c_1d(spf, tempIn, tempOut, FFTW_ESTIMATE);
@@ -281,7 +280,7 @@ class SongPlayer {
             }
 
             startTime = (float) (startHead + spf*2)/sampleRate;  // put start time 2 frames ahead. Calibration
-
+            cout << "Starting time: " << startTime << "\n";
             // Free up fftw stuff
             fftw_destroy_plan(tempP);
             fftw_free(tempOut);
@@ -478,7 +477,7 @@ class Drawer {
             };
 
             //Get font
-            if (!MyFont.loadFromFile("/usr/share/fonts/truetype/ubuntu/Ubuntu-BI.ttf")) {
+            if (!MyFont.loadFromFile("Ubuntu-BI.ttf")) {
                 cout << "Can't Font File\n";
             }
 
