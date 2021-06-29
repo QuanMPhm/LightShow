@@ -488,7 +488,7 @@ class Drawer {
                 shard.setPoint(0, shard3Coor.at(i*4));
                 shard.setPoint(1, shard3Coor.at(i*4 + 1));
                 shard.setPoint(2, shard3Coor.at(i*4 + 2));
-                shard.setFillColor(sf::Color::Red);
+                shard.setFillColor(sf::Color::Transparent);
                 shard.setPosition(shard3Coor.at(i*4 + 3));
                 f2n.push_back(Shard(notes3.at(i), freqs3.at(i), shard));
             }
@@ -502,7 +502,7 @@ class Drawer {
                 shard.setPoint(1, sf::Vector2f(shard4Coor.at(i*10 + 2), shard4Coor.at(i*10 + 3)));
                 shard.setPoint(2, sf::Vector2f(shard4Coor.at(i*10 + 4), shard4Coor.at(i*10 + 5)));
                 shard.setPoint(3, sf::Vector2f(shard4Coor.at(i*10 + 6), shard4Coor.at(i*10 + 7)));
-                shard.setFillColor(sf::Color::Red);
+                shard.setFillColor(sf::Color::Transparent);
                 shard.setPosition(shard4Coor.at(i*10 + 8), shard4Coor.at(i*10 + 9));
                 f2n.push_back(Shard(notes4.at(i), freqs4.at(i), shard));
             }
@@ -772,13 +772,13 @@ int main(){
 
     SongPlayer sp;
     Drawer drw = Drawer();
-    cout << "Welcome to LightShow\nBefore you play, set a song, tempo, and starting sf::Vector2f.\n";
+    cout << "Welcome to LightShow\nBefore you play, set a song, tempo, and starting time.\n";
     cout << "Set [Song Name]"" - Sets a WAV sound file in current directory as your song\n";
-    cout << "STempo - Plays song, set tempo based on your key presses\n";
-    cout << "MTempo [Tempo] - Type in your BPM, reconmended if you know the actual BPM of the song\n";
-    cout << "Time - Plays song again, and you press enter to set starting time\n";
+    cout << "STempo - Plays song, and you set the beat by pressing the ENTER key with the beat\n";
+    cout << "MTempo [BPM] - Type in your BPM, reconmended if you know the actual BPM of the song\n";
+    cout << "Time - Automatically finds the first beat of the song\n";
     cout << "Quit"" - Quit game\n";
-    cout << "Start"" - Start playing only after setting song, tempo, and start time\n";
+    cout << "Start"" - Start playing the game only after setting song, tempo, and start time\n";
 
     bool setsong = false;
     bool settempo = false;
