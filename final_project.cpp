@@ -1,30 +1,4 @@
-// We need
-//A main function, that calls the sfml window
-
-//User can type a song from the current directory. This opens sfml
-//First, requires initialize:
-//Read in the entire music file if possible
-//Obtain sampleRate
-//Obtain file size
-
-//Begin playing music file
-//Or if not possible, make temp copy of music file, and play from that
-
-//The player now gains control of a square in the window
-
-//Attempt to perform fft analysis in sync with the music
-//After each fft analysis, idenfity "main" note being played based on relative amplitude of frequency
-
-//Given note played, perform some action on the screen that tries to kill player (area lights up that becomes lethal to player)
-//When player dies, shows game over screen. 
-//Allow pausing, ask for retry.
-//If player survives until song ends, Allow replay, or type in another song from cmd
-//Type "quit" to quit the game
-
-
-//SongPlayer should contain 2 buffers, for input samples, and output after fft
-//SongPlayer will perform fft analysis internally
-//Other objects and main() can then obtain fft output, and 
+// Copyright 2021 Quan PHam quanmp@bu.edu
 
 #include <iostream>
 #include <fstream>
