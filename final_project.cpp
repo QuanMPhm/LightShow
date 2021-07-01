@@ -446,7 +446,7 @@ class Drawer {
     public:
 
         int px, py;
-        int pspeed = 5;  // Player speed in pixels
+        int pspeed = 10;  // Player speed in pixels
         int bdelay = 2;  // Beats to delay before they appear
         int lives = 3;  // Player starts with 3 lives
 
@@ -673,7 +673,7 @@ class Drawer {
             if (lives == 1) {
                 player.setSize(sf::Vector2f(15, 15));
                 player.setFillColor(sf::Color(150,150,0,255));
-                pspeed = 10;
+                pspeed = 20;
             }
         }
         //Called when alive, to check if player is dead or not. True for dead
@@ -689,7 +689,11 @@ class Drawer {
                     pvec.push_back(p);
                 }
                 if (isInside(pvec, pcount, player)) lives--;  // If user is hit, returns DEAD
-                if (lives == 0) return true;
+                if (lives == 0) {
+                    litShards.clear();
+                    return true;
+                }
+
             }
             litShards.clear();
             //cout << "Lives " << lives << "\n";
