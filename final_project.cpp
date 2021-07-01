@@ -551,8 +551,8 @@ class Drawer {
             background.setFillColor(sf::Color(0,0,0,50));
             background.setPosition(0,0);
 
-            // Init activeNotes with delay of 2 beats
-            for (int i = 0; i < bdelay; i++) {
+            // Init activeNotes with delay of 1 beats, really depends if sound was in sync or not
+            for (int i = 0; i < bdelay - 1; i++) {
                 vector<int> temp = {-1};
                 activeNotes.push_back(temp);
             }
@@ -697,7 +697,7 @@ class Drawer {
         }
 
         // ORDER MATTERS WHEN DRAWING. BACKGROUND FIRST!!!!
-        sf::Text getUText(string status) {
+        sf::Text getUText(string status, float score = 0.0) {
             sf::Text statText;
             statText.setFont(MyFont);
 
@@ -706,7 +706,9 @@ class Drawer {
                 statText.setStyle(sf::Text::Bold);
                 statText.setFillColor(sf::Color::Yellow);                
             } else if (status == "Dead") {
-                statText.setString("You're Dead - Q to quit");
+                int pscore = (int) (score * 100);
+                string deadText = "Game Over - " + std::to_string(pscore) + "%\nQ to quit";
+                statText.setString(deadText);
                 statText.setStyle(sf::Text::Bold);
                 statText.setFillColor(sf::Color::Blue);
             } else if (status == "Pause") {
@@ -819,6 +821,7 @@ int main(){
         } else if (cmd == "Start") {
             if (setsong && settempo && setstart) {
                 
+                bool deadFirst = true;  // To onyl draw dead screen text once
                 beatNext = sp.startTime;  // Reset beat time
                 drw.lives = 3;  // Reset lives
 
@@ -910,7 +913,10 @@ int main(){
                         window.draw(drw.getUText(gState));
                     } else if (gState == "Dead") {
                         //window.draw(drw.getBackground());
-                        window.draw(drw.getUText(gState));
+                        if (deadFirst) {
+                            window.draw(drw.getUText(gState, songTime/songEnd));
+                            deadFirst = false;
+                        }
                     }
 
                     sf::Event event;
